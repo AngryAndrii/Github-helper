@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import fetchUser from "./api/fetch";
 import { SearchBar } from "./components/SearchBar";
-import { AxiosError } from "axios";
 
 function App() {
   const [data, setData] = useState("");
