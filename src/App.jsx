@@ -1,43 +1,29 @@
-// import React from "react";
-
-import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import fetchUser from "./api/fetch";
 import { SearchBar } from "./components/SearchBar";
+import Card from "./components/Card";
+import { useState } from "react";
 
 function App() {
   const [data, setData] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     setIsLoading(true);
-  //     const data = await fetchUser("johndpope");
-  //     return setValue(data);
-  //   }
-  //   getData();
-  //   setIsLoading(false);
-  // }, []);
-
-  // function showData(value) {
-  //   if (!value) {
-  //     return;
-  //   }
-  //   console.log(value);
-  // }
-
-  // showData(value);
   const getUserData = async (inputValue) => {
     try {
+      setData("");
       const resp = await fetchUser(inputValue);
       console.log(resp);
+      setData(resp);
     } catch (error) {
-      return error;
+      console.log(error);
+      toast.error("invalid user login! Enter the correct one!");
     }
   };
 
   return (
     <div>
       <SearchBar getUserData={getUserData} />
+      <Card info={data} />
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }
