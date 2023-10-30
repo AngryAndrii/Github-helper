@@ -1,30 +1,44 @@
 // import React from "react";
 
 import { useEffect, useState } from "react";
-import { fetchUser } from "./api/fetch";
+import fetchUser from "./api/fetch";
+import { SearchBar } from "./components/SearchBar";
 
 function App() {
-  const [value, setValue] = useState("");
-  const [loading, setLoading] = useState("false");
+  const [data, setData] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (!loading) {
-      return;
+  // useEffect(() => {
+  //   async function getData() {
+  //     setIsLoading(true);
+  //     const data = await fetchUser("johndpope");
+  //     return setValue(data);
+  //   }
+  //   getData();
+  //   setIsLoading(false);
+  // }, []);
+
+  // function showData(value) {
+  //   if (!value) {
+  //     return;
+  //   }
+  //   console.log(value);
+  // }
+
+  // showData(value);
+  const getUserData = async (inputValue) => {
+    try {
+      const resp = await fetchUser(inputValue);
+      console.log(resp);
+    } catch (error) {
+      return error;
     }
-    async function fetchData() {
-      setLoading(true);
-      let resp = await fetchUser();
-      setValue(resp);
-      console.log(value);
-      setLoading(false);
-    }
-    fetchData();
-  }, [value, loading]);
+  };
 
   return (
-    <>
-      <h1>Hello Andrii</h1>
-    </>
+    <div>
+      <SearchBar getUserData={getUserData} />
+    </div>
   );
 }
 
