@@ -33,3 +33,4 @@ function Card({ info }) {
 }
 
 export default Card;
+//
