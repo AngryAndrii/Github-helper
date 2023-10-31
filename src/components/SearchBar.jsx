@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ImSearch } from "react-icons/im";
 
 export const SearchBar = ({ getUserData }) => {
   const [inputValue, setInputValue] = useState("");
@@ -23,7 +24,9 @@ export const SearchBar = ({ getUserData }) => {
           placeholder="input the user login"
           onChange={handleInputChange}
         />
-        <button type="submit">search</button>
+        <button type="submit">
+          <ImSearch />
+        </button>
       </form>
     </>
   );
