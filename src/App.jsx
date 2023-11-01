@@ -15,7 +15,7 @@ function App() {
   const getUserData = async (inputValue) => {
     try {
       setData("");
-      const resp = await fetchUser("AngryAndrii");
+      const resp = await fetchUser(inputValue);
       console.log(resp);
       setData(resp);
     } catch (error) {
@@ -28,7 +28,7 @@ function App() {
     <StyledApp>
       <SearchBar getUserData={getUserData} />
       <Card info={data} />
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-left" reverseOrder={false} />
     </StyledApp>
   );
 }

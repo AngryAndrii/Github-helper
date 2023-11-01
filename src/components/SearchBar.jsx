@@ -12,6 +12,7 @@ export const SearchBar = ({ getUserData }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     getUserData(inputValue);
+    event.target.reset();
   };
 
   return (
