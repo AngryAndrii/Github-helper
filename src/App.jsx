@@ -5,6 +5,10 @@ import Card from "./components/Card/Card";
 import { useState } from "react";
 import { StyledApp } from "./App.styled";
 
+// const controller = new AbortController();
+// const signal = controller.signal;
+// controller.abort();
+
 function App() {
   const [data, setData] = useState("");
 
