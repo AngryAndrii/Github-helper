@@ -25,7 +25,7 @@ export const SearchBar = ({ getUserData }) => {
           onChange={handleInputChange}
         />
         <button type="submit">
-          <ImSearch />
+          <ImSearch color="black" />
         </button>
       </form>
     </>

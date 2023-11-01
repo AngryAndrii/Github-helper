@@ -3,5 +3,7 @@ import "modern-normalize";
 
 export const GlobalStyle = createGlobalStyle`
 body{
-    color: red;
+    color: #43e024;
+    font-family: "Roboto Slab", serif;
+    background-color: black;
 }`;

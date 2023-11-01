@@ -1,7 +1,7 @@
 import toast, { Toaster } from "react-hot-toast";
 import fetchUser from "./api/fetch";
 import { SearchBar } from "./components/SearchBar";
-import Card from "./components/Card";
+import Card from "./components/Card/Card";
 import { useState } from "react";
 import { StyledApp } from "./App.styled";
 
@@ -11,7 +11,7 @@ function App() {
   const getUserData = async (inputValue) => {
     try {
       setData("");
-      const resp = await fetchUser("ol");
+      const resp = await fetchUser("AngryAndrii");
       console.log(resp);
       setData(resp);
     } catch (error) {
