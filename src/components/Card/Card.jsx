@@ -1,6 +1,6 @@
 import { StyledCard } from "./Card.styled";
 
-function Card({ info }) {
+function Card({ info, addToFavorites }) {
   const {
     avatar_url,
     name,
@@ -13,6 +13,9 @@ function Card({ info }) {
   } = info;
 
   const dateOfCreate = new Date(created_at).toDateString().slice(4);
+  function handleFavoritesClick() {
+    addToFavorites(login);
+  }
 
   return (
     <StyledCard>
@@ -28,6 +31,9 @@ function Card({ info }) {
             <a className="ref" href={html_url}>
               go to user page
             </a>
+            <button type="button" onClick={handleFavoritesClick}>
+              Add to favorites
+            </button>
             <p>date of create account: {dateOfCreate}</p>
             <p>count of public repositories: {public_repos}</p>
             <p>count of followers: {followers}</p>
@@ -39,4 +45,3 @@ function Card({ info }) {
 }
 
 export default Card;
-//

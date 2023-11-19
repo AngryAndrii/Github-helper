@@ -5,7 +5,7 @@ export const SearchBar = ({ getUserData }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (event) => {
-    const value = event.target.value;
+    const value = event.target.value.trim();
     setInputValue(value);
   };
 

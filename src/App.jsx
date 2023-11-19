@@ -2,8 +2,9 @@ import toast, { Toaster } from "react-hot-toast";
 import fetchUser from "./api/fetch";
 import { SearchBar } from "./components/SearchBar";
 import Card from "./components/Card/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyledApp } from "./App.styled";
+import Favorites from "./components/Favorites/Favorites";
 
 // const controller = new AbortController();
 // const signal = controller.signal;
@@ -11,12 +12,12 @@ import { StyledApp } from "./App.styled";
 
 function App() {
   const [data, setData] = useState("");
+  const [favoritesUsers, setFavoritesUsers] = useState([]);
 
   const getUserData = async (inputValue) => {
     try {
       setData("");
       const resp = await fetchUser(inputValue);
-      console.log(resp);
       setData(resp);
     } catch (error) {
       console.log(error);
@@ -24,10 +25,21 @@ function App() {
     }
   };
 
+  function addToFavorites(login) {
+    setFavoritesUsers((current) => [...current, login]);
+    console.log(favoritesUsers);
+  }
+
+  //--------------work with lockalstorage---------------------------------
+  useEffect(() => {
+    localStorage.setItem("FavUsers", JSON.stringify(favoritesUsers));
+  }, [favoritesUsers]);
+
   return (
     <StyledApp>
       <SearchBar getUserData={getUserData} />
-      <Card info={data} />
+      <Card info={data} addToFavorites={addToFavorites} />
+      <Favorites />
       <Toaster position="top-left" reverseOrder={false} />
     </StyledApp>
   );
