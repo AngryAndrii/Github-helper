@@ -27,19 +27,26 @@ function App() {
 
   function addToFavorites(login) {
     setFavoritesUsers((current) => [...current, login]);
-    console.log(favoritesUsers);
   }
 
   //--------------work with lockalstorage---------------------------------
   useEffect(() => {
-    localStorage.setItem("FavUsers", JSON.stringify(favoritesUsers));
+    const fav = JSON.parse(localStorage.getItem("favUsers"));
+    if (fav.length !== 0) {
+      setFavoritesUsers(fav);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favUsers", JSON.stringify(favoritesUsers));
   }, [favoritesUsers]);
+  //------------lockalstorage--------------
 
   return (
     <StyledApp>
       <SearchBar getUserData={getUserData} />
       <Card info={data} addToFavorites={addToFavorites} />
-      <Favorites />
+      <Favorites favorites={favoritesUsers} />
       <Toaster position="top-left" reverseOrder={false} />
     </StyledApp>
   );
